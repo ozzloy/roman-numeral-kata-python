@@ -5,3 +5,5 @@ def parse(roman):
         return 2
     if roman == "III":
         return 3
+    if roman == "IV":
+        return 4
