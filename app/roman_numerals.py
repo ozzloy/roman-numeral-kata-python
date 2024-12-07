@@ -1,13 +1,20 @@
 def parse(roman):
-    if roman == "I":
-        return 1
-    if roman == "II":
-        return 2
-    if roman == "III":
-        return 3
-    if roman == "IV":
-        return 4
-    if roman == "V":
-        return 5
-    if roman == "VI":
-        return 6
+    value = 0
+    index = 0
+    while index < len(roman) and roman[index] == "I":
+        index += 1
+        value += 1
+
+    if index == len(roman):
+        return value
+
+    if index == len(roman) - 1 and roman[index] == "V":
+        return 5 - value
+
+    value = 5
+    index += 1
+    while index < len(roman) and roman[index] == "I":
+        index += 1
+        value += 1
+
+    return value
