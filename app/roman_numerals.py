@@ -46,16 +46,9 @@ def consume_values_once(values):
 
 
 def parse(roman):
-    values = {
-        "V": 5,
-        "X": 10,
-    }
-    if not roman:
-        return 0
-    if roman[0] == "I":
-        if roman[-1] == "I":
-            return len(roman)
-        return values[roman[-1]] - (len(roman) - 1)
-    if roman[0] == "X":
-        return 10 + parse(roman[1:])
-    return values[roman[0]] + (len(roman) - 1)
+    values = evaluate_chunks(chunk(roman))
+    total = 0
+    while values:
+        value, values = consume_values_once(values)
+        total += value
+    return total
