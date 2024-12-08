@@ -74,7 +74,9 @@ def test_consume_values_once(values, expected):
         ("XX", 20),
         ("XXV", 25),
         ("XXXIV", 34),
-        # ("XLI", 41),
+        ("XLI", 41),
+        ("MCMLXXXIV", 1984),
+        ("MCMXCIX", 1999),
     ],
 )
 def test_roman_numeral_parser(roman, expected):
