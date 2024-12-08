@@ -5,6 +5,7 @@ from app.roman_numerals import (
     chunk_once,
     evaluate_chunk,
     evaluate_chunks,
+    consume_values_once,
 )
 
 I = "I"
@@ -39,9 +40,25 @@ def test_evaluate_chunk(chunk, expected):
     assert evaluate_chunk(chunk) == expected
 
 
-@pytest.mark.parametrize("chunks,expected", [([[I, 1]], [1])])
+@pytest.mark.parametrize(
+    "chunks,expected",
+    [([[I, 1]], [1]), ([[I, 2]], [2]), ([[I, 1], [V, 1]], [1, 5])],
+)
 def test_evaluate_chunks(chunks, expected):
     assert evaluate_chunks(chunks) == expected
+
+
+@pytest.mark.parametrize(
+    "values,expected",
+    [
+        ([1], (1, [])),
+        ([1, 5], (4, [])),
+        ([5], (5, [])),
+        ([5, 1], (5, [1])),
+    ],
+)
+def test_consume_values_once(values, expected):
+    assert consume_values_once(values) == expected
 
 
 @pytest.mark.parametrize(

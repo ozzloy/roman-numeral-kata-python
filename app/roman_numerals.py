@@ -31,7 +31,18 @@ def evaluate_chunk(chunk):
 
 
 def evaluate_chunks(chunks):
-    return [1]
+    return list(map(evaluate_chunk, chunks))
+
+
+def consume_values_once(values):
+    if not values:
+        return 0, []
+    if len(values) == 1:
+        return values[0], []
+    first, second = values[0:2]
+    if first < second:
+        return second - first, values[2:]
+    return first, values[1:]
 
 
 def parse(roman):
